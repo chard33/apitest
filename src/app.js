@@ -10,10 +10,8 @@ app.get("/", (req, res) => {
 app.get("/cartas", (req, res) => {
     conexion.query("SELECT * FROM `cartas`", (err, result) => {
         if (err) throw err;
-        var datos = result;
 
-        console.log(datos);
-        res.send(`${JSON.stringify(datos)}`)
+        res.json(result);
     })
 })
 
