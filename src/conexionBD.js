@@ -1,6 +1,6 @@
-import { createConnection } from "mysql";
+const mysql = require("mysql")
 
-let conexion = createConnection({
+const conexion = mysql.createConnection({
     host: "sql5.freesqldatabase.com",
     database: "sql5738105",
     user: "sql5738105",
@@ -12,4 +12,4 @@ conexion.connect(function (err) {
     console.log("Connected!");
 });
 
-export default conexion
+module.exports = conexion

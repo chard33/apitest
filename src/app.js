@@ -1,5 +1,5 @@
-import express from "express"
-import conexion from "./conexionBD"
+const express = require("express")
+const conexion = require("./conexionBD")
 const app = express()
 
 app.get("/", (req, res) => {
@@ -14,4 +14,4 @@ app.get("/cartas", (req, res) => {
     })
 })
 
-export default app
+module.exports = app
