@@ -18,16 +18,43 @@ app.get("/", (req, res) => {
     res.send("Api de prueba para el desafio Alura Geek!")
 })
 
-app.get("/cartas", (req, res) => {
+app.post("/cartas", (req, res) => {
+    const { titulo, precio, imagen } = req.body  // Extraer datos del cuerpo de la solicitud
 
-    res.setHeader('Content-Type', 'application/json')
+    if (!titulo || !precio || !imagen) {
+        return res.status(400).json({ error: "Faltan campos obligatorios" })
+    }
 
-    conexion.query("SELECT * FROM `cartas`", (err, result) => {
-        if (err) throw err;
+    const sql = "INSERT INTO `cartas` (titulo, precio, imagen) VALUES (?, ?, ?)"
+    const values = [titulo, precio, imagen]
 
-        res.json(result);
+    conexion.query(sql, values, (err, result) => {
+        if (err) throw err
+
+        res.status(201).json({ message: "Carta agregada correctamente", id: result.insertId })
     })
 })
+
+app.delete("/cartas/:id", (req, res) => {
+    // Obtener el ID desde los headers de la solicitud
+    const id = req.params.id;
+
+    if (!id) {
+        return res.status(400).json({ error: "El ID es obligatorio en los headers" });
+    }
+
+    const sql = "DELETE FROM `cartas` WHERE id = ?";
+    
+    conexion.query(sql, [id], (err, result) => {
+        if (err) throw err;
+
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ error: "Carta no encontrada" });
+        }
+
+        res.status(200).json({ message: `Carta con ID ${id} eliminada correctamente` });
+    });
+});
 
 app.get("/imagenes", (req, res) => {
 
