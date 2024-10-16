@@ -9,6 +9,8 @@ app.get("/cartas", (req, res) => {
     conexion.query("SELECT * FROM `cartas`", (err, result) => {
         if (err) throw err;
 
+        res.setHeader("Nuevo headearl", "33"); 
+
         res.json(result);
     })
 })
