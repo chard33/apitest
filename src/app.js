@@ -26,7 +26,7 @@ app.post("/cartas", (req, res) => {
     }
 
     const sql = "INSERT INTO `cartas` (titulo, precio, imagen) VALUES (?, ?, ?)"
-    const values = [titulo, precio, imagen]
+    const values = [titulo, parseFloat(precio.toFixed(2)), imagen]
 
     conexion.query(sql, values, (err, result) => {
         if (err) throw err.cause
