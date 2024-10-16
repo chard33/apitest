@@ -12,7 +12,7 @@ app.get("/cartas", (req, res) => {
         if (err) throw err;
         var datos = result;
 
-        console.log(JSON.stringify(datos));
+        console.log(datos);
         res.send(`${JSON.stringify(datos)}`)
     })
 })
