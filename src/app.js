@@ -1,19 +1,17 @@
 const express = require("express")
+const cors = require('cors');
 const conexion = require("./conexionBD")
 const app = express()
-const cors = require("cors")
 
-app.use(cors());
+app.use(cors()); 
 
 app.get("/cartas", (req, res) => {
+
+    res.header('Content-Type', 'application/json');
+    res.header('Warning', 'Se asignan los headers');
+
     conexion.query("SELECT * FROM `cartas`", (err, result) => {
         if (err) throw err;
-
-        res.set({
-            'content-type': 'application/json',
-            'Access-Control-Allow-Origin': '*',
-            'warning': "Se asignan los headers"
-       })
 
         res.json(result);
     })
