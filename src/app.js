@@ -56,6 +56,17 @@ app.delete("/cartas/:id", (req, res) => {
     });
 });
 
+app.get("/cartas", (req, res) => {
+
+    res.setHeader('Content-Type', 'application/json')
+
+    conexion.query("SELECT * FROM `cartas`", (err, result) => {
+        if (err) throw err;
+
+        res.json(result);
+    })
+})
+
 app.get("/imagenes", (req, res) => {
 
     res.setHeader('Content-Type', 'application/json')
