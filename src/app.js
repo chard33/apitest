@@ -18,10 +18,15 @@ app.get("/cartas", (req, res) => {
     res.set({
         'Content-Type': 'application/json',
         'Warning': 'Este es un header adicional'
-      });
+    });
 
     conexion.query("SELECT * FROM `cartas`", (err, result) => {
         if (err) throw err;
+
+        const headers = response.getHeaders();
+
+        // Printing those headers 
+        console.log(headers);
 
         res.json(result);
     })
