@@ -2,7 +2,7 @@ const express = require("express")
 const conexion = require("./conexionBD")
 const app = express()
 
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static('public'));
 
 app.get("/cartas", (req, res) => {
     conexion.query("SELECT * FROM `cartas`", (err, result) => {
