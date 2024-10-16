@@ -2,7 +2,9 @@ const express = require("express")
 const conexion = require("./conexionBD")
 const app = express()
 
-app.use(express.static('public'));
+app.get("/", (req, res) => {
+    res.sendFile(__dirname + '/public/index.html');
+})
 
 app.get("/cartas", (req, res) => {
     conexion.query("SELECT * FROM `cartas`", (err, result) => {
