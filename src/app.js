@@ -9,7 +9,11 @@ app.get("/cartas", (req, res) => {
     conexion.query("SELECT * FROM `cartas`", (err, result) => {
         if (err) throw err;
 
-        res.setHeader("Access-Control-Allow-Origin", "*"); 
+        res.set({
+            'content-type': 'application/json',
+            'Access-Control-Allow-Origin': '*',
+            'warning': "Se asignan los headers"
+       })
 
         res.json(result);
     })
