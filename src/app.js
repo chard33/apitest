@@ -15,18 +15,22 @@ app.use(cors(corsOptions));
 
 app.get("/cartas", (req, res) => {
 
-    res.set({
-        'Content-Type': 'application/json',
-        'Warning': 'Este es un header adicional'
-    });
+
+    res.setHeader('Content-Type', 'application/json')
 
     conexion.query("SELECT * FROM `cartas`", (err, result) => {
         if (err) throw err;
 
-        //const headers = res.getHeaders();
+        res.json(result);
+    })
+})
 
-        // Printing those headers 
-        //console.log(headers);
+app.get("/imagenes", (req, res) => {
+
+    res.setHeader('Content-Type', 'application/json')
+
+    conexion.query("SELECT * FROM `cartas`", (err, result) => {
+        if (err) throw err;
 
         res.json(result);
     })
