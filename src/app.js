@@ -23,7 +23,7 @@ app.get("/cartas", (req, res) => {
     conexion.query("SELECT * FROM `cartas`", (err, result) => {
         if (err) throw err;
 
-        const headers = response.getHeaders();
+        const headers = res.getHeaders();
 
         // Printing those headers 
         console.log(headers);
