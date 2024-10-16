@@ -29,7 +29,7 @@ app.post("/cartas", (req, res) => {
     const values = [titulo, precio, imagen]
 
     conexion.query(sql, values, (err, result) => {
-        if (err) throw err
+        if (err) throw err.cause
 
         res.status(201).json({ message: "Carta agregada correctamente", id: result.insertId })
     })
@@ -46,7 +46,7 @@ app.delete("/cartas/:id", (req, res) => {
     const sql = "DELETE FROM `cartas` WHERE id = ?";
     
     conexion.query(sql, [id], (err, result) => {
-        if (err) throw err;
+        if (err) err.cause
 
         if (result.affectedRows === 0) {
             return res.status(404).json({ error: "Carta no encontrada" });
@@ -61,7 +61,7 @@ app.get("/cartas", (req, res) => {
     res.setHeader('Content-Type', 'application/json')
 
     conexion.query("SELECT * FROM `cartas`", (err, result) => {
-        if (err) throw err;
+        if (err) err.cause
 
         res.json(result);
     })
@@ -72,7 +72,7 @@ app.get("/imagenes", (req, res) => {
     res.setHeader('Content-Type', 'application/json')
 
     conexion.query("SELECT * FROM `imagenes`", (err, result) => {
-        if (err) throw err;
+        if (err) err.cause
 
         res.json(result);
     })
