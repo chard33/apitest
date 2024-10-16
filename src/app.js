@@ -2,10 +2,10 @@ const express = require("express")
 const conexion = require("./conexionBD")
 const app = express()
 
-//app.use(express.static('./public'))
+app.use(express.static('../public'))
 
 app.get("/", (req, res) => {
-    res.sendFile('index.html', { root: '../public' })
+    res.sendFile('index.html')
 })
 
 app.get("/cartas", (req, res) => {
