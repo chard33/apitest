@@ -13,6 +13,11 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 
+app.get("/", (req, res) => {
+
+    res.send("Api de prueba para el desafio Alura Geek!")
+})
+
 app.get("/cartas", (req, res) => {
 
     res.setHeader('Content-Type', 'application/json')
