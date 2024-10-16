@@ -13,8 +13,6 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 
-app.options('*', cors(corsOptions));
-
 app.get("/cartas", (req, res) => {
 
     res.set({
