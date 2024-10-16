@@ -5,7 +5,7 @@ const app = express()
 //app.use(express.static('./public'))
 
 app.get("/", (req, res) => {
-    res.sendFile('./public/index.html');
+    res.sendFile('index.html', { root: '.' })
 })
 
 app.get("/cartas", (req, res) => {
