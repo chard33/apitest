@@ -15,7 +15,6 @@ app.use(cors(corsOptions));
 
 app.get("/cartas", (req, res) => {
 
-
     res.setHeader('Content-Type', 'application/json')
 
     conexion.query("SELECT * FROM `cartas`", (err, result) => {
@@ -29,7 +28,7 @@ app.get("/imagenes", (req, res) => {
 
     res.setHeader('Content-Type', 'application/json')
 
-    conexion.query("SELECT * FROM `cartas`", (err, result) => {
+    conexion.query("SELECT * FROM `imagenes`", (err, result) => {
         if (err) throw err;
 
         res.json(result);
